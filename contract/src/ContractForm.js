@@ -32,17 +32,6 @@ export default class ContractForm extends Component {
   render() {
     return (
       <div>
-        <AppBar position="static" style={{ backgroundColor: "#07575B" }}>
-          <br />
-        </AppBar>
-        <AppBar position="static" style={{ backgroundColor: "#66A5AD" }}>
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              Contract Form
-            </Typography>
-          </Toolbar>
-        </AppBar>
-
         <Card
           style={{
             marginLeft: 20,
