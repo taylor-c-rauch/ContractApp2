@@ -6,6 +6,16 @@ import Toolbar from "@material-ui/core/Toolbar";
 import ContractForm from "./ContractForm.js";
 import Display from "./Display.js";
 import firebase from "./firebase.js";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import blueGrey from "@material-ui/core/colors/blueGrey";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blueGrey
+  }
+});
 
 export default class App extends Component {
   constructor(props) {
@@ -14,9 +24,13 @@ export default class App extends Component {
       name: "",
       company: "",
       details: "",
-      sig: ""
+      sig: "",
+      value: 0
     };
   }
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
   //this function will be passed to children components to update state in this component
   updateField(field, newVal) {
     this.setState({ [field]: newVal });
@@ -50,18 +64,35 @@ export default class App extends Component {
   }
 
   render() {
+    const { value } = this.state;
     return (
       <div>
-        <ContractForm
-          update={(field, newVal) => this.updateField(field, newVal)}
-          name={this.state.name}
-          company={this.state.company}
-          details={this.state.details}
-          submit={e => this.handleClick(e)}
-          clear={e => this.handleClear(e)}
-        />
-        <br />
-        <Display />
+        <AppBar position="static" style={{ backgroundColor: "#07575B" }}>
+          <br />
+        </AppBar>
+        <MuiThemeProvider theme={theme}>
+          <AppBar position="static" style={{ backgroundColor: "#66A5AD" }}>
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+            >
+              <Tab label="Contract Form" />
+              <Tab label="Submitted Contracts" />
+            </Tabs>
+          </AppBar>
+          {value === 0 && (
+            <ContractForm
+              update={(field, newVal) => this.updateField(field, newVal)}
+              name={this.state.name}
+              company={this.state.company}
+              details={this.state.details}
+              submit={e => this.handleClick(e)}
+              clear={e => this.handleClear(e)}
+            />
+          )}
+          {value === 1 && <Display />}
+        </MuiThemeProvider>
       </div>
     );
   }

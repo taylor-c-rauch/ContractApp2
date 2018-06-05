@@ -59,29 +59,17 @@ export default class Display extends Component {
   render() {
     return (
       <div>
-        <AppBar position="static" style={{ backgroundColor: "#07575B" }}>
-          <br />
-        </AppBar>
-        <AppBar position="static" style={{ backgroundColor: "#66A5AD" }}>
-          <Toolbar>
-            <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-              Submitted Contracts
-            </Typography>
-            <Button
-              color="inherit"
-              size="small"
-              onClick={e => this.removeAll(e)}
-            >
-              Remove All
-            </Button>
-          </Toolbar>
-        </AppBar>
         {this.state.submitted.map(form => (
           <ContractTile
             form={form}
             handleRemove={(e, id) => this.handleRemove(e, id)}
           />
         ))}
+        <center>
+          <Button color="inherit" size="small" onClick={e => this.removeAll(e)}>
+            Remove All
+          </Button>
+        </center>
       </div>
     );
   }
