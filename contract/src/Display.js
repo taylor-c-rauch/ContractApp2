@@ -21,6 +21,7 @@ export default class Display extends Component {
   }
 
   componentDidMount() {
+    this.props.update(false);
     //get data from firebase
     const results = firebase.database().ref("contracts");
     //every time there is a change, take snapshot, iterate through and put in submitted state
