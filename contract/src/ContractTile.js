@@ -38,6 +38,7 @@ export default class ContractTile extends Component {
                 <strong>Details: </strong>
                 {this.props.form.details}
                 <br />
+                <strong>Signature: </strong>
                 <img src={this.props.form.sig} width="200" />
               </Typography>
               <ListItemSecondaryAction>
