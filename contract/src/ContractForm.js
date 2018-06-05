@@ -79,7 +79,10 @@ export default class ContractForm extends Component {
               />
               <br />
               <br />
-              <potato>Electronic Signature</potato>
+              <potato>
+                Electronic Signature (Please click ADD SIGNATURE before
+                submitting)
+              </potato>
             </MuiThemeProvider>
 
             <br />
