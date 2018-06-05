@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 import SignaturePad from "react-signature-pad";
+import SimpleSnackbar from "./message.js";
 
 const theme = createMuiTheme({
   palette: {
@@ -116,6 +117,11 @@ export default class ContractForm extends Component {
             </Grid>
           </Grid>
         </center>
+        <SimpleSnackbar
+          message="Contract submitted successfully"
+          open={this.props.open}
+          update={this.props.update}
+        />
       </div>
     );
   }

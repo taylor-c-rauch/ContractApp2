@@ -25,7 +25,8 @@ export default class App extends Component {
       company: "",
       details: "",
       sig: "",
-      value: 0
+      value: 0,
+      open: false
     };
   }
   handleChange = (event, value) => {
@@ -45,6 +46,7 @@ export default class App extends Component {
     }
     e.preventDefault();
     //create object with info currently in state
+    this.setState({ open: true });
     let form = {
       name: this.state.name,
       company: this.state.company,
@@ -89,9 +91,12 @@ export default class App extends Component {
               details={this.state.details}
               submit={e => this.handleClick(e)}
               clear={e => this.handleClear(e)}
+              open={this.state.open}
             />
           )}
-          {value === 1 && <Display />}
+          {value === 1 && (
+            <Display update={newVal => this.updateField("open", newVal)} />
+          )}
         </MuiThemeProvider>
       </div>
     );
